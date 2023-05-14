@@ -1,0 +1,24 @@
+module tb;
+  reg at,bt;
+  wire st,ct;
+  
+  half_adder inst(.a(at),.b(bt),.s(st),.c(ct));
+  
+  initial
+    begin
+      $monitor ("at=%b,bt=%b,st=%b,ct=%b",at,bt,st,ct,$time);
+      
+      at=0;bt=0;
+      #2 at=0;bt=1;
+      #2 at=1;bt=0;
+      #2 at=1;bt=1;
+      
+    end
+  
+  initial 
+    begin
+      $dumpfile("dump.vcd");
+      $dumpvars();
+    end
+
+endmodule
