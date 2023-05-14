@@ -1,1 +1,45 @@
+//Design Block of a half adder
+module half_adder(a,b,s,c);
+  
+  input a,b;
+  output reg s,c;
+  wire w1,w2,w3,w4;
+  
+  not(w1,a);
+  not(w3,b);
+  
+  or(s,w2,w4);
 
+  and(w2,b,w1);
+  and(w4,a,w3);
+  and(c,a,b);
+
+endmodule
+
+
+
+//Testbench of the aforementioned design
+module tb;
+  reg at,bt;
+  wire st,ct;
+  
+  half_adder inst(.a(at),.b(bt),.s(st),.c(ct));
+  
+  initial
+    begin
+      $monitor ("at=%b,bt=%b,st=%b,ct=%b",at,bt,st,ct,$time);
+      
+      at=0;bt=0;
+      #2 at=0;bt=1;
+      #2 at=1;bt=0;
+      #2 at=1;bt=1;
+      
+    end
+  
+  initial 
+    begin
+      $dumpfile("dump.vcd");
+      $dumpvars();
+    end
+
+endmodule
