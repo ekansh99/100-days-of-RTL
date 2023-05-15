@@ -1,0 +1,35 @@
+module tb_full_adder();
+  
+  reg at,bt,carry_int;
+  wire sumt,carryt;  
+  
+  full_adder inst(.sum(sumt),.carry(carryt),.carry_in(carry_int),.a(at),.b(bt));
+  
+  initial
+    begin
+  
+      $monitor ("at=%b,bt=%b,carry_int=%b,carryt=%b,sumt=%b",at,bt,carry_int,carryt,sumt,$time);      
+      
+      at=0;bt=0;carry_int=0;
+      #1 at=0;bt=0;carry_int=1;      
+      
+      #1 at=0;bt=1;carry_int=0;
+      #1 at=0;bt=1;carry_int=1;      
+      
+      #1 at=1;bt=0;carry_int=0;
+      #1 at=1;bt=0;carry_int=1;      
+      
+      #1 at=1;bt=1;carry_int=0;
+      #1 at=1;bt=1;carry_int=1;    
+    
+    end
+  
+  initial
+    begin
+  
+      $dumpfile("dump.vcd");
+      $dumpvars();
+
+    end
+
+endmodule
