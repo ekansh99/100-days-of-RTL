@@ -1,0 +1,29 @@
+module tb_half_subtractor();
+  
+  reg at,bt;
+  wire borrowt,difft;  
+  
+  half_subtractor inst(.borrow(borrowt),.diff(difft),.a(at),.b(bt));
+  
+  initial
+    begin
+  
+      $monitor ("at=%b,bt=%b,borrowt=%b,difft=%b",at,bt,borrowt,difft,$time);      
+      
+      at=0;bt=0;      
+      #2 at=0;bt=1;      
+      #2 at=1;bt=0;      
+      #2 at=1;bt=1;   
+    
+    end
+  
+    initial
+      begin
+  
+      $dumpfile("dump.vcd");
+      $dumpvars();
+
+    end
+
+
+endmodule
