@@ -1,0 +1,18 @@
+module tb_encoder();
+  reg at,bt,ct,dt;
+  wire y0t,y1t;
+  encoder inst(.a(at),.b(bt),.c(ct),.d(dt),.y0(y0),.y1(y1));
+  initial 
+    begin
+      $monitor ("at=%b,bt=%b,ct=%b,dt=%b,y0t=%b,y1t=%b",at,bt,ct,dt,y0t,y1t,$time);
+      at=1;bt=0;ct=0;dt=0;
+      #5 at=0;bt=1;ct=0;dt=0;
+      #5 at=0;bt=0;ct=1;dt=0;
+      #5 at=0;bt=0;ct=0;dt=1;
+    end
+   initial
+    begin
+      $dumpfile("dump.vcd");
+      $dumpvars();
+    end
+endmodule
