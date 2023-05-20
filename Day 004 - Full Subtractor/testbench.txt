@@ -1,0 +1,35 @@
+module tb_full_sub();
+  
+  reg at,bt,ct;
+  wire borrowt,difft;  
+  
+  full_subtractor inst(.borrow(borrowt),.diff(difft),.a(at),.b(bt),.c(ct));
+  
+  initial
+    begin
+  
+      $monitor ("at=%b,bt=%b,ct=%b,borrowt=%b,difft=%b",at,bt,ct,borrowt,difft,$time);      
+      
+      at=0;bt=0;ct=0;
+      #1 at=0;bt=0;ct=1;      
+      
+      #1 at=0;bt=1;ct=0;
+      #1 at=0;bt=1;ct=1;      
+      
+      #1 at=1;bt=0;ct=0;
+      #1 at=1;bt=0;ct=1;      
+      
+      #1 at=1;bt=1;ct=0;
+      #1 at=1;bt=1;ct=1;    
+    
+    end
+  
+  initial
+    begin
+  
+      $dumpfile("dump.vcd");
+      $dumpvars();
+
+    end
+
+endmodule

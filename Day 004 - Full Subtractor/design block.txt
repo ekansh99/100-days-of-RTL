@@ -1,0 +1,11 @@
+module full_subtractor(diff, borrow,a,b,c); //c=borrow_in
+input a,b,c;
+output reg diff, borrow;
+always@(*)
+begin
+diff=a^b^c;
+borrow=(~a&b)|(~(a^b)&c);
+end
+endmodule
+
+
